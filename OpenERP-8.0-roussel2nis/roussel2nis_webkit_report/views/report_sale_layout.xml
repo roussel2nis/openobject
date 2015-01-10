@@ -3,6 +3,7 @@
     <data>
         <template id="report_sale_layout" inherit_id="sale.report_saleorder_document">
             <xpath expr="//table/tbody[@class='sale_tbody']" position="replace">
+            	<tbody class="sale_tbody">
                 <t t-foreach="o.order_line" t-as="l">
                 	<div t-if="l.layout_type=='line'">
                 		<tr>
@@ -38,10 +39,11 @@
 	                        </td>
                         </tr>
                     </div>
+                    <!-- 
                 	<div t-if="l.layout_type=='article'">
                 		<tr>
 	                        <td>
-	                           <span t-field="l.name"/>
+	                           test<span t-field="l.name"/>
 	                        </td>
 	                        <td>
 	                            <span t-esc="', '.join(map(lambda x: x.name, l.tax_id))"/>
@@ -62,6 +64,7 @@
 	                        </td>
                         </tr>
 					</div>
+					-->
                     <t t-if="l.layout_type=='break'">
                         <![CDATA[
                             </tbody>
@@ -84,6 +87,7 @@
                             ]]>
                         </t>
                     </t>
+                   </tbody>
             </xpath>
        </template>
     </data>

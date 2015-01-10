@@ -102,20 +102,18 @@
 		                <thead>
 		                    <tr>
 		                        <th>Description</th>
-		                        <th>Taxes</th>
+		                        
 		                        <th class="text-right">Quantity</th>
 		                        <th class="text-right">Unit Price</th>
 		                        <th groups="sale.group_discount_per_so_line">Disc.(%)</th>
 		                        <th class="text-right">Price</th>
+		                        <th>Taxes</th>
 		                    </tr>
 		               </thead>
 		               <tbody class="sale_tbody">
 		                    <tr t-foreach="o.order_line" t-as="l">
 		                        <td>
 		                           <span t-field="l.name"/>
-		                        </td>
-		                        <td>
-		                            <span t-esc="', '.join(map(lambda x: x.name, l.tax_id))"/>
 		                        </td>
 		                        <td class="text-right">
 		                            <span t-field="l.product_uom_qty"/>
@@ -130,6 +128,9 @@
 		                        <td class="text-right">
 		                            <span t-field="l.price_subtotal"
 		                                t-field-options='{"widget": "monetary", "display_currency": "o.pricelist_id.currency_id"}'/>
+		                        </td>
+		                        <td>
+		                            <span t-esc="', '.join(map(lambda x: x.name, l.tax_id))"/>
 		                        </td>
 		                    </tr>
 		                </tbody>
@@ -172,6 +173,7 @@
 		            </div>
 		        </xpath>
 		        <xpath expr="//table/tbody[@class='sale_tbody']" position="replace">
+		        <tbody class="sale_tbody">
                 <t t-foreach="o.order_line" t-as="l">
                 	<div t-if="l.layout_type=='line'">
                 		<tr>
@@ -212,9 +214,7 @@
 	                        <td>
 	                           <span t-field="l.name"/>
 	                        </td>
-	                        <td>
-	                            <span t-esc="', '.join(map(lambda x: x.name, l.tax_id))"/>
-	                        </td>
+	                        
 	                        <td class="text-right">
 	                            <span t-field="l.product_uom_qty"/>
 	                            <span groups="product.group_uom" t-field="l.product_uom"/>
@@ -228,6 +228,9 @@
 	                        <td class="text-right">
 	                            <span t-field="l.price_subtotal"
 	                                t-field-options='{"widget": "monetary", "display_currency": "o.pricelist_id.currency_id"}'/>
+	                        </td>
+	                        <td>
+	                            <span t-esc="', '.join(map(lambda x: x.name, l.tax_id))"/>
 	                        </td>
                         </tr>
 					</div>
@@ -253,7 +256,21 @@
                             ]]>
                         </t>
                     </t>
+                    </tbody>
             </xpath>
+            <xpath expr="//table/tbody[@class='sale_tbody']" position="after">
+		        <tbody class="conditions_tbody">
+		        <t t-foreach="o.order_line" t-as="l">
+            		<div t-if="l.layout_type=='predefined'">
+                	<tr>
+                        <td>
+                           <i><span t-field="l.name"/></i>
+                        </td>
+                        </tr>
+                    </div>
+                    </t>
+                    </tbody>
+                    </xpath>
 		</template>
     </data>
 </openerp>
