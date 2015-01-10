@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	<record model="ir.ui.view" id="roussel2nis_view_sale_order_text">
+            <field name="name">roussel2nis.view.sale.order.text</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="ons_productivity_sale_layout.ons_view_sale_order_inh01"/>
+            <field name="priority" eval="15"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="/form/sheet/notebook/page[@string='Order Lines']/field[@name='order_line']/form/group[1]/group[1]/field[@name='layout_type']" position="after">
+                        <field name="predefined_text_id" on_change="predefined_text_change(layout_type,predefined_text_id)" attrs="{'invisible':[('layout_type','!=','predefined')]}"/>
+                    </xpath>
+                </data>
+            </field>
+        </record>
+    
+     	<record id="view_order_form" model="ir.ui.view">
+            <field name="name">sale.predefined.text.form</field>
+            <field name="model">sale.predefined.text</field>
+            <field name="arch" type="xml">
+            	<form string="Predefined Text">
+            		<group>
+            		<field name="name"/>
+            		<field name="text"/>
+            		<field name="type_id"/>
+            		</group>
+            	</form>
+     		</field>
+     	</record>
+
+
+		<record id='predefined_text_action' model='ir.actions.act_window'>
+            <field name="name">Predefined Texts</field>
+            <field name="res_model">sale.predefined.text</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+		<menuitem
+            id="layout_predefined_text_menuitem"
+            name="Predefined Texts"
+            parent="base.menu_base_config"
+            action="predefined_text_action"
+            sequence="2"
+            groups="base.group_no_one"
+            />
+</data>
+</openerp>
