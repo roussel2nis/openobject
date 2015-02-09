@@ -1,6 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
+    <record model="ir.ui.view" id="roussel2nis_view_invoice_line_inh01">
+            <field name="name">roussel2nis.view.invoice.line.inh01</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="ons_productivity_sale_layout.ons_view_invoice_line_inh01"/>
+            <field name="priority" eval="1"/>
+            <field name="arch" type="xml">
+            <data>
+            
+            	<xpath expr="//tree[@string='Invoice Lines']" position="replace">
+            		<tree string="Invoice Lines">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="product_id"
+                                        on_change="product_id_change(product_id, uos_id, quantity, name, parent.type, parent.partner_id, parent.fiscal_position, price_unit, parent.currency_id, parent.company_id, context)"/>
+                                    <field name="name"/>
+                                    <field name="company_id" invisible="1"/>
+                                    <field name="account_id" groups="account.group_account_user"
+                                        domain="[('company_id', '=', parent.company_id), ('journal_id', '=', parent.journal_id), ('type', '=', 'other')]"
+                                        on_change="onchange_account_id(product_id, parent.partner_id, parent.type, parent.fiscal_position,account_id)"/>
+                                    <field name="account_analytic_id" groups="analytic.group_analytic_accounting"
+                                        domain="[('type','!=','view'), ('company_id', '=', parent.company_id), ('state','not in',('close','cancelled'))]"/>
+                                    <field name="quantity"/>
+                                    <field name="uos_id" groups="product.group_uom"
+                                        on_change="uos_id_change(product_id, uos_id, quantity, name, parent.type, parent.partner_id, parent.fiscal_position, price_unit, parent.currency_id, parent.company_id, context)"/>
+                                    <field name="price_unit"/>
+                                    <field name="discount" groups="sale.group_discount_per_so_line"/>
+                                    <field name="invoice_line_tax_id" widget="many2many_tags" context="{'type':parent.type}"
+                                        domain="[('parent_id','=',False),('company_id', '=', parent.company_id)]"/>
+                                    <field name="price_subtotal"/>
+                                </tree>
+            	</xpath>
+            	 
+            	
+            	
+            		
+            		 
+            </data>
+            
+            </field>
+        </record>
+        
+         <record model="ir.ui.view" id="roussel2nis_view_invoice_line_form">
+            <field name="name">roussel2nis.view.invoice.line.form</field>
+            <field name="model">account.invoice.line</field>
+            <field name="inherit_id" ref="account.view_invoice_line_form"/>
+            <field name="priority" eval="1"/>
+            <field name="arch" type="xml">
+            <data>
+            	<xpath expr="/form/group/group/field[@name='product_id']" position="after">
+            		<field name="layout_type" on_change="layout_type_change(layout_type)"/>
+                    <field name="predefined_text_id" on_change="predefined_text_change(layout_type,predefined_text_id)" attrs="{'invisible':[('layout_type','!=','predefined')]}"/>
+                </xpath>
+                <xpath expr="/form/field[@name='name']" position="after">
+                    <field name="predefined_text" attrs="{'invisible':[('layout_type','!=','predefined')]}" string="Predefined Text"/>
+                </xpath>
+            </data>
+            </field>
+        </record>
     	<record model="ir.ui.view" id="roussel2nis_view_sale_order_text">
             <field name="name">roussel2nis.view.sale.order.text</field>
             <field name="model">sale.order</field>
@@ -10,6 +67,9 @@
                 <data>
                     <xpath expr="/form/sheet/notebook/page[@string='Order Lines']/field[@name='order_line']/form/group[1]/group[1]/field[@name='layout_type']" position="after">
                         <field name="predefined_text_id" on_change="predefined_text_change(layout_type,predefined_text_id)" attrs="{'invisible':[('layout_type','!=','predefined')]}"/>
+                    </xpath>
+                    <xpath expr="/form/sheet/notebook/page[@string='Order Lines']/field[@name='order_line']/form/field[@name='name']" position="after">
+                        <field name="predefined_text" attrs="{'invisible':[('layout_type','!=','predefined')]}"/>
                     </xpath>
                 </data>
             </field>
@@ -21,11 +81,24 @@
             <field name="arch" type="xml">
             	<form string="Predefined Text">
             		<group>
+            		<field name="code"/>
             		<field name="name"/>
             		<field name="text"/>
             		<field name="type_id"/>
             		</group>
             	</form>
+     		</field>
+     	</record>
+     	
+     	<record id="view_order_tree" model="ir.ui.view">
+            <field name="name">sale.predefined.text.tree</field>
+            <field name="model">sale.predefined.text</field>
+            <field name="arch" type="xml">
+            	<tree string="Predefined Text">
+            		<field name="code"/>
+            		<field name="name"/>
+            		<field name="type_id"/>
+            	</tree>
      		</field>
      	</record>
 

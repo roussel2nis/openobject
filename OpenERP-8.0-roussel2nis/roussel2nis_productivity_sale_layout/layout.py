@@ -26,7 +26,7 @@
 #
 ##############################################################################
 
-from openerp import models, fields
+from openerp import models, fields, api
 from openerp.tools.translate import _
 
 LAYOUTS_LIST = [
@@ -68,9 +68,37 @@ layout_predefined_type()
 class layout_predefined_text(models.Model):
     _name="sale.predefined.text"
     
+    code=fields.Char(string="Code",size=255,required=True)
     name=fields.Char(string="Name",size=255,required=True)
     text = fields.Text(string="Text")
     type_id = fields.Many2one("sale.predefined.type",string="Type",required=True)
+    
+
+    @api.multi
+    @api.depends('name', 'code')
+    def name_get(self):
+        result=[]
+        for predefined_text in self:
+            
+            result.append((predefined_text.id,"[%s] %s" % (str(predefined_text.code.encode('utf-8')),str(predefined_text.name.encode('utf-8')))))
+        return result
+
+    
+
+    @api.model
+    def name_search(self,name='', args=None,operator='ilike',context=None,limit=100):
+        res = []
+        args = list(args or [])
+        if not name:
+            return super(layout_predefined_text, self).name_search(name, args, operator, limit)
+        # optimize out the default criterion of ``ilike ''`` that matches everything
+        
+        if not (name == '' and operator == 'ilike'):
+            args += ['|',(self._rec_name, operator, name),('code', operator, name)]
+        
+        texts = self.search( args, limit=limit)
+       
+        return texts.name_get()
     
     
 layout_predefined_text()

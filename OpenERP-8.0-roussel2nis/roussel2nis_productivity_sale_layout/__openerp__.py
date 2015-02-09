@@ -26,7 +26,7 @@
 #
 ##############################################################################
 {
-    'name' : 'Productivity: sale and invoice layouts',
+    'name' : 'Roussel2nis Productivity: sale and invoice layouts',
     'version' : '1.0',
     'author' : 'Denis Roussel',
     'category' : 'Sales Management',
