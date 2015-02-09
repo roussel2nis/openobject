@@ -29,9 +29,10 @@ ACDlec Sales Reports
     """,
     'author': 'Denis Roussel',
     'website': '',
-    'depends': ['sale', 'report','ons_productivity_sale_layout'],
+    'depends': ['sale', 'report','ons_productivity_sale_layout','roussel2nis_webkit_report'],
     'category': 'Sale',
-    'data': ['views/report_sale_layout.xml',
+    'data': ['views/report_sale_layout.xml','views/report_invoice_layout.xml'
+             
              ],
         'installable': True,
     'application': True,
