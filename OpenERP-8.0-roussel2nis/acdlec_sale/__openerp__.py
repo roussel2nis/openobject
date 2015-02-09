@@ -29,7 +29,7 @@ ACDlec Sales Reports
     """,
     'author': 'Denis Roussel',
     'website': '',
-    'depends': ['sale', 'report','ons_productivity_sale_layout','roussel2nis_webkit_report'],
+    'depends': ['sale', 'report','ons_productivity_sale_layout','roussel2nis_webkit_report','roussel2nis_productivity_sale_layout'],
     'category': 'Sale',
     'data': ['views/report_sale_layout.xml','views/report_invoice_layout.xml'
              
