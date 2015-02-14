@@ -78,6 +78,7 @@
                         <th class="text-right">Amount</th>
                     </tr>
                 </thead>
+                <!-- 
                 <tbody class="invoice_tbody">
                     <t t-foreach="o.invoice_line" t-as="l">
                     	<div t-if="l.layout_type=='line'">
@@ -155,7 +156,85 @@
                             ]]>
                         </t>
                     </t>
+                </tbody> -->
+                <tbody class="invoice_tbody">
+                    <t t-foreach="o.invoice_line" t-as="l">
+                    	
+                		<tr t-if="l.layout_type=='line'">
+                           <td colspan="100">
+                				<strong><hr/></strong>
+            				</td>
+                        </tr>
+
+                	
+                	<tr t-if="l.layout_type=='title'">
+                        <td>
+                           <strong><span t-field="l.name"/></strong>
+                        </td>
+                        </tr>
+
+ 
+	                    <tr t-if="l.layout_type=='text'">
+	                        <td>
+	                           <span t-field="l.name"/>
+	                        </td>
+	                    </tr>
+
+                    	<tr t-if="l.layout_type=='subtotal'">
+	                    	<td>
+	                           <strong>Sub-Total <span t-field="l.name"/></strong>
+	                        </td>
+	                        <td/>
+	                        <td/>
+	                        <td/>
+	                        <td>
+	                           <strong><span t-field="l.rel_subtotal" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/></strong>
+	                        </td>
+                        </tr>
+
+                    <tr t-if="l.layout_type=='article'">
+                    
+                        <td><span t-field="l.name"/></td>
+                        <td>
+                            <span t-field="l.quantity"/>
+                            <span t-field="l.uos_id"  groups="product.group_uom"/>
+                        </td>
+                        <td class="text-right">
+                            <span t-field="l.price_unit"/>
+                        </td>
+                        <td class="text-right" groups="sale.group_discount_per_so_line"><span t-field="l.discount"/></td>
+                        <td class="text-right">
+                            <span t-esc="', '.join(map(lambda x: x.name, l.invoice_line_tax_id))"/>
+                        </td>
+                        <td class="text-right">
+                            <span t-field="l.price_subtotal" 
+                                t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                        </td>
+                       </tr>
+                       <t t-if="l.layout_type=='break'">
+                        <![CDATA[
+                            </tbody>
+                            </table>
+                            <p style="page-break-before:always;"> </p>
+                            <table class="table table-condensed">
+                            ]]>
+                            <thead>
+                                <tr>
+                                    <th>Description</th>
+                                    <th>Taxes</th>
+                                    <th class="text-right">Quantity</th>
+                                    <th class="text-right">Unit Price</th>
+                                    <th groups="sale.group_discount_per_so_line">Disc.(%)</th>
+                                    <th class="text-right">Price</th>
+                                </tr>
+                           </thead>
+                            <![CDATA[
+                                <tbody>
+                            ]]>
+                        </t>
+                    </t>
                 </tbody>
+                
             </table>
 
             <div class="row">
