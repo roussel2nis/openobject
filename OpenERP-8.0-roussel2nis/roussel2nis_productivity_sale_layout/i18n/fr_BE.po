@@ -1,0 +1,208 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* roussel2nis_productivity_sale_layout
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-02-09 14:32+0000\n"
+"PO-Revision-Date: 2015-02-09 15:34+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: fr_BE\n"
+"X-Generator: Poedit 1.6.5\n"
+
+#. module: roussel2nis_productivity_sale_layout
+#: view:website:account.report_invoice_document
+#: view:website:sale.report_saleorder_document
+msgid ""
+"</tbody>\n"
+"                            </table>\n"
+"                            <p style=\"page-break-before:always;\"> </p>\n"
+"                            <table class=\"table table-condensed\">"
+msgstr ""
+"</tbody>\n"
+"                            </table>\n"
+"                            <p style=\"page-break-before:always;\"> </p>\n"
+"                            <table class=\"table table-condensed\">"
+
+#. module: roussel2nis_productivity_sale_layout
+#: view:website:account.report_invoice_document
+#: view:website:sale.report_saleorder_document
+msgid "<tbody>"
+msgstr "<tbody>"
+
+#. module: roussel2nis_productivity_sale_layout
+#: field:sale.predefined.text,code:0
+msgid "Code"
+msgstr "Code"
+
+#. module: roussel2nis_productivity_sale_layout
+#: field:sale.predefined.text,create_uid:0
+#: field:sale.predefined.type,create_uid:0
+msgid "Created by"
+msgstr "Created by"
+
+#. module: roussel2nis_productivity_sale_layout
+#: field:sale.predefined.text,create_date:0
+#: field:sale.predefined.type,create_date:0
+msgid "Created on"
+msgstr "Created on"
+
+#. module: roussel2nis_productivity_sale_layout
+#: view:website:account.report_invoice_document
+#: view:website:sale.report_saleorder_document
+msgid "Description"
+msgstr "Description"
+
+#. module: roussel2nis_productivity_sale_layout
+#: view:website:account.report_invoice_document
+#: view:website:sale.report_saleorder_document
+msgid "Disc.(%)"
+msgstr "Rem.(%)"
+
+#. module: roussel2nis_productivity_sale_layout
+#: field:sale.predefined.text,id:0 field:sale.predefined.type,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: roussel2nis_productivity_sale_layout
+#: model:ir.model,name:roussel2nis_productivity_sale_layout.model_account_invoice_line
+msgid "Invoice Line"
+msgstr "Lignes de facture"
+
+#. module: roussel2nis_productivity_sale_layout
+#: view:account.invoice:roussel2nis_productivity_sale_layout.roussel2nis_view_invoice_line_inh01
+msgid "Invoice Lines"
+msgstr "Lignes de facture"
+
+#. module: roussel2nis_productivity_sale_layout
+#: field:sale.predefined.text,write_uid:0
+#: field:sale.predefined.type,write_uid:0
+msgid "Last Updated by"
+msgstr "Last Updated by"
+
+#. module: roussel2nis_productivity_sale_layout
+#: field:sale.predefined.text,write_date:0
+#: field:sale.predefined.type,write_date:0
+msgid "Last Updated on"
+msgstr "Last Updated on"
+
+#. module: roussel2nis_productivity_sale_layout
+#: field:sale.predefined.text,name:0 field:sale.predefined.type,name:0
+msgid "Name"
+msgstr "Nom"
+
+#. module: roussel2nis_productivity_sale_layout
+#: code:addons/roussel2nis_productivity_sale_layout/layout.py:48
+#, python-format
+msgid "Note"
+msgstr "Note"
+
+#. module: roussel2nis_productivity_sale_layout
+#: code:addons/roussel2nis_productivity_sale_layout/layout.py:56
+#, python-format
+msgid "Page Break"
+msgstr "Saut de page"
+
+#. module: roussel2nis_productivity_sale_layout
+#: view:account.invoice.line:roussel2nis_productivity_sale_layout.roussel2nis_view_invoice_line_form
+#: field:account.invoice.line,predefined_text_id:0
+#: code:addons/roussel2nis_productivity_sale_layout/layout.py:50
+#: field:sale.order.line,predefined_text_id:0
+#: view:sale.predefined.text:roussel2nis_productivity_sale_layout.view_order_form
+#: view:sale.predefined.text:roussel2nis_productivity_sale_layout.view_order_tree
+#, python-format
+msgid "Predefined Text"
+msgstr "Texte prédéfini"
+
+#. module: roussel2nis_productivity_sale_layout
+#: field:account.invoice.line,predefined_text:0
+#: field:sale.order.line,predefined_text:0
+msgid "Predefined Text Text"
+msgstr "Texte prédéfini"
+
+#. module: roussel2nis_productivity_sale_layout
+#: model:ir.actions.act_window,name:roussel2nis_productivity_sale_layout.predefined_text_action
+#: model:ir.ui.menu,name:roussel2nis_productivity_sale_layout.layout_predefined_text_menuitem
+msgid "Predefined Texts"
+msgstr "Textes prédéfinis"
+
+#. module: roussel2nis_productivity_sale_layout
+#: view:website:account.report_invoice_document
+#: view:website:sale.report_saleorder_document
+msgid "Price"
+msgstr "Prix"
+
+#. module: roussel2nis_productivity_sale_layout
+#: code:addons/roussel2nis_productivity_sale_layout/layout.py:44
+#, python-format
+msgid "Product"
+msgstr "Produit"
+
+#. module: roussel2nis_productivity_sale_layout
+#: view:website:account.report_invoice_document
+#: view:website:sale.report_saleorder_document
+msgid "Quantity"
+msgstr "Quantité"
+
+#. module: roussel2nis_productivity_sale_layout
+#: model:ir.model,name:roussel2nis_productivity_sale_layout.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Ligne de commandes de vente"
+
+#. module: roussel2nis_productivity_sale_layout
+#: code:addons/roussel2nis_productivity_sale_layout/layout.py:54
+#, python-format
+msgid "Separator Line"
+msgstr "Ligne de séparation"
+
+#. module: roussel2nis_productivity_sale_layout
+#: code:addons/roussel2nis_productivity_sale_layout/layout.py:52
+#, python-format
+msgid "Sub Total"
+msgstr "Sous-Total"
+
+#. module: roussel2nis_productivity_sale_layout
+#: view:website:account.report_invoice_document
+#: view:website:sale.report_saleorder_document
+msgid "Sub-Total"
+msgstr "Sous-Total"
+
+#. module: roussel2nis_productivity_sale_layout
+#: view:website:account.report_invoice_document
+#: view:website:sale.report_saleorder_document
+msgid "Taxes"
+msgstr "Taxes"
+
+#. module: roussel2nis_productivity_sale_layout
+#: field:sale.predefined.text,text:0
+msgid "Text"
+msgstr "Texte"
+
+#. module: roussel2nis_productivity_sale_layout
+#: code:addons/roussel2nis_productivity_sale_layout/layout.py:46
+#, python-format
+msgid "Title"
+msgstr "Titre"
+
+#. module: roussel2nis_productivity_sale_layout
+#: field:sale.predefined.text,type_id:0
+msgid "Type"
+msgstr "Type"
+
+#. module: roussel2nis_productivity_sale_layout
+#: view:website:account.report_invoice_document
+#: view:website:sale.report_saleorder_document
+msgid "Unit Price"
+msgstr "Prix unitaire"
+
+#. module: roussel2nis_productivity_sale_layout
+#: view:website:sale.report_saleorder_document
+msgid "test"
+msgstr "test"

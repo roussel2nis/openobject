@@ -39,7 +39,7 @@
     'website': '',
     'images' : [],
     'depends' : ['sale','ons_productivity_sale_layout','roussel2nis_webkit_report'],
-    'data': [
+    'data': ['security/ir.model.access.csv',
         'layout_view.xml',
         'report_sale_layout.xml'
     ],
