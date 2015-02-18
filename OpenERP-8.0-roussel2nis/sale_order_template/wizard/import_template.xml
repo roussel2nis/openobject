@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="view_get_products_template" model="ir.ui.view">
+            <field name="name">GEt Products from Templte</field>
+            <field name="model">sale.order_template_import</field>
+            <field name="arch" type="xml">
+                <form string="Template" version="7">
+                    <group string="Template to Import">
+                        <field name="template"/>
+                    </group>
+                    
+                    <footer>
+                        <button name="import_products" string="Import" type="object" class="oe_highlight"/>
+                        or
+                        <button string="_Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</openerp>
