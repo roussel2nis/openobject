@@ -47,7 +47,7 @@ class denisou_mail(osv.osv):
                     'subject':'[DenIsou] Invoices awaiting payment',
                     'body_html':body,
                     'email_from':'roussel2nis@gmail.com',
-                    'email_to':user.email,
+                    'email_to':str(user.email),
                     
                     }
                 msg_id=message.create(cr,uid,msg_vals,context)
