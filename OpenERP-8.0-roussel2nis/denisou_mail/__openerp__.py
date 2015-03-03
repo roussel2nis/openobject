@@ -10,7 +10,7 @@
     'version': '1.2',
     'author': 'Denis Roussel',
     'depends': [],
-    'data': [
+    'data': ['views/res_config_view.xml','denisou_mail_data.xml'
         
     ],
    

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data> 
+ 		<record id="view_denisou_mail_settings" model="ir.ui.view">
+            <field name="name">denisou mail settings</field>
+            <field name="model">denisou.mail.settings</field>
+            <field name="arch" type="xml">
+            	<form string="Configure Mail" class="oe_form_configuration">
+                    <header>
+                        <button string="Apply" type="object" name="execute" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" type="object" name="cancel" class="oe_link"/>
+                    </header>
+            		
+            			<label for="recipients"/>
+            			<field name="recipients" class="oe_inline"/>
+
+            	</form>
+                
+            </field>
+        </record>
+         <record id="denisou_mail_config" model="ir.actions.act_window">
+            <field name="name">Configure Mail</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">denisou.mail.settings</field>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+        </record>
+
+        <menuitem id="menu_denisou_mail_config" name="Mail" parent="base.menu_config"
+            sequence="14" action="denisou_mail_config"/>
+	</data>
+</openerp>

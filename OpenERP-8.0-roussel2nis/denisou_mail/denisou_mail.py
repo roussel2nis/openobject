@@ -1,5 +1,7 @@
 from openerp.osv import osv,fields
-from datetime import datetime
+from datetime import datetime, timedelta
+from openerp.tools.safe_eval import safe_eval
+from openerp import SUPERUSER_ID
 
 
 class res_users(osv.osv):
@@ -12,7 +14,7 @@ class denisou_mail(osv.osv):
     _name="denisou.mail"
     def send_supplier_due_invoice(self,cr,uid,context=None):
         
-        ids = self.pool.get('account.invoice').search(cr,uid,[('type','=','in_invoice'),('date_due','<=',datetime.now()),('reconciled','=',False)])
+        ids = self.pool.get('account.invoice').search(cr,uid,[('type','=','in_invoice'),('date_due','<=',datetime.now()-timedelta(days=2)),('date_due','>',datetime.now()-timedelta(days=60)),('reconciled','=',False)])
         
         invoices = self.pool.get('account.invoice').browse(cr,uid,ids,context)
         
@@ -38,13 +40,16 @@ class denisou_mail(osv.osv):
         
         message = self.pool.get('mail.mail')
         email_to=[]
-        email_to.append('roussel2nis@gmail.com')
+        recipients = safe_eval(self.pool.get('ir.config_parameter').get_param(cr,SUPERUSER_ID,'denisou_mail.recipients','False'))
+        for user in self.pool.get('res.users').browse(cr,uid,recipients,context=context):
+            if user.email:
+                email_to.append(user.email)
         
         msg_vals = {
                     'subject':'[DenIsou] Invoices awaiting payment',
                     'body_html':body,
                     'email_from':'roussel2nis@gmail.com',
-                    'email_to':'roussel2nis@gmail.com',
+                    'email_to':email_to,
                     
                     }
         msg_id=message.create(cr,uid,msg_vals,context)
