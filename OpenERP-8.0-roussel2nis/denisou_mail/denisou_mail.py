@@ -43,16 +43,14 @@ class denisou_mail(osv.osv):
         recipients = safe_eval(self.pool.get('ir.config_parameter').get_param(cr,SUPERUSER_ID,'denisou_mail.recipients','False'))
         for user in self.pool.get('res.users').browse(cr,uid,recipients,context=context):
             if user.email:
-                email_to.append(user.email)
-        
-        msg_vals = {
+                msg_vals = {
                     'subject':'[DenIsou] Invoices awaiting payment',
                     'body_html':body,
                     'email_from':'roussel2nis@gmail.com',
-                    'email_to':email_to,
+                    'email_to':user.email,
                     
                     }
-        msg_id=message.create(cr,uid,msg_vals,context)
-        if msg_id:
-            message.send(cr,uid,[msg_id],context=context)
+                msg_id=message.create(cr,uid,msg_vals,context)
+                if msg_id:
+                    message.send(cr,uid,[msg_id],context=context)
         return True
