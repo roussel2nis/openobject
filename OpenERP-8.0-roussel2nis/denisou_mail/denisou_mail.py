@@ -14,7 +14,7 @@ class denisou_mail(osv.osv):
     _name="denisou.mail"
     def send_supplier_due_invoice(self,cr,uid,context=None):
         
-        ids = self.pool.get('account.invoice').search(cr,uid,[('type','=','in_invoice'),('date_due','<=',datetime.now()-timedelta(days=2)),('date_due','>',datetime.now()-timedelta(days=60)),('reconciled','=',False)])
+        ids = self.pool.get('account.invoice').search(cr,uid,[('type','=','in_invoice'),('date_due','<=',datetime.now()+timedelta(days=2)),('date_due','>',datetime.now()-timedelta(days=60)),('reconciled','=',False)])
         
         invoices = self.pool.get('account.invoice').browse(cr,uid,ids,context)
         
