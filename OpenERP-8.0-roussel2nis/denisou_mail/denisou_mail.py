@@ -2,6 +2,7 @@ from openerp.osv import osv,fields
 from datetime import datetime, timedelta
 from openerp.tools.safe_eval import safe_eval
 from openerp import SUPERUSER_ID
+import logging
 
 
 class res_users(osv.osv):
@@ -14,7 +15,9 @@ class denisou_mail(osv.osv):
     _name="denisou.mail"
     def send_supplier_due_invoice(self,cr,uid,context=None):
         
-        ids = self.pool.get('account.invoice').search(cr,uid,[('type','=','in_invoice'),('date_due','<=',datetime.now()+timedelta(days=2)),('date_due','>',datetime.now()-timedelta(days=60)),('reconciled','=',False)])
+        _logger = logging.getLogger(__name__)
+        
+        ids = self.pool.get('account.invoice').search(cr,uid,[('type','=','in_invoice'),('state','=','open'),('date_due','<=',datetime.now()+timedelta(days=2)),('date_due','>',datetime.now()-timedelta(days=60)),('reconciled','=',False)])
         
         invoices = self.pool.get('account.invoice').browse(cr,uid,ids,context)
         
@@ -31,7 +34,10 @@ class denisou_mail(osv.osv):
         for invoice in invoices:
             body+='<tr style="border:1px solid black">'
             body+="<td>"+invoice.partner_id.name+"</td>"
-            body+="<td>"+invoice.number+"</td>"
+            if invoice.number:
+                body+="<td>"+invoice.number+"</td>"
+            else:
+                body+="<td>False</td>"
             body+="<td>"+invoice.date_due+"</td>"
             body+="<td>"+str(invoice.amount_total)+"</td>"
             body+="</tr>"
