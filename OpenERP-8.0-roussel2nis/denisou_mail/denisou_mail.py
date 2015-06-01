@@ -15,7 +15,7 @@ class denisou_mail(osv.osv):
     _name="denisou.mail"
     def send_supplier_due_invoice(self,cr,uid,context=None):
         
-        _logger = logging.getLogger(__name__)
+        logger = logging.getLogger(__name__)
         
         ids = self.pool.get('account.invoice').search(cr,uid,[('type','=','in_invoice'),('state','=','open'),('date_due','<=',datetime.now()+timedelta(days=2)),('date_due','>',datetime.now()-timedelta(days=60)),('reconciled','=',False)])
         
@@ -30,6 +30,8 @@ class denisou_mail(osv.osv):
         body+="<td>Due Date</td>"
         body+="<td>Amount</td>"
         body+="</tr>"
+        
+        logger.info('Invoices: %s' + str(invoices.mapped('id')),)
         
         for invoice in invoices:
             body+='<tr style="border:1px solid black">'
